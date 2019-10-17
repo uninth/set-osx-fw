@@ -1,0 +1,45 @@
+#! /usr/bin/env bash
+#
+# See man socketfilterfw
+
+socketfilterfw="sudo /usr/libexec/ApplicationFirewall/socketfilterfw"
+
+function fwstat()
+{
+	echo "FW status:"
+	echo "getblockall: `$socketfilterfw --getblockall`"
+	echo "getstealthmode: `$socketfilterfw --getstealthmode`"
+	#$socketfilterfw --setloggingmode on
+	#$socketfilterfw --setloggingopt detail
+}
+
+function public()
+{
+	echo using public wifi, block all stelth mode
+	$socketfilterfw --setglobalstate on
+	$socketfilterfw --setstealthmode on
+	$socketfilterfw --setblockall on
+}
+
+function private()
+{
+	echo private more relaxed, allow ping and whatever defined under firewall options
+	$socketfilterfw --setglobalstate on
+	$socketfilterfw --setstealthmode off
+	$socketfilterfw --setblockall off
+}
+
+case $1 in
+	public)	public; fwstat; exit
+		;;
+	private)	private; fwstat; exit
+		;;
+	""|stat)
+			fwstat; exit
+		;;
+	*)		echo "usage: $0 private | public | stat"; exit
+		;;
+esac
+
+exit
+
