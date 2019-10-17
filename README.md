@@ -29,7 +29,7 @@ Run with
 
 ## Why do it?
 
-Apple consider [pf](https://en.wikipedia.org › wiki › PF_(firewall)) part of the base operating system, so if you make any changes they may be replaced during a system update. If you like me are most comfortable with the command line, then it makes sense to change settings depending on your current connection with a script.
+Apple consider [pf](https://en.wikipedia.org/wiki/PF_(firewall)) part of the base operating system, so if you make any changes they may be replaced during a system update. If you like me are most comfortable with the command line, then it makes sense to change settings depending on your current connection with a script.
 
 ## Tested on
 
