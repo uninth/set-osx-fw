@@ -7,10 +7,10 @@ socketfilterfw="sudo /usr/libexec/ApplicationFirewall/socketfilterfw"
 function fwstat()
 {
 	echo "FW status:"
-	echo "getblockall: `$socketfilterfw --getblockall`"
-	echo "getstealthmode: `$socketfilterfw --getstealthmode`"
-	#$socketfilterfw --setloggingmode on
-	#$socketfilterfw --setloggingopt detail
+	echo "getblockall:    $( $socketfilterfw --getblockall )"
+	echo "getstealthmode: $( $socketfilterfw --getstealthmode )"
+	echo "enable logging: $( $socketfilterfw --setloggingmode on )"
+	echo "logging mode:   $( $socketfilterfw --setloggingopt detail )"
 }
 
 function public()
@@ -29,15 +29,25 @@ function private()
 	$socketfilterfw --setblockall off
 }
 
+function off()
+{
+	echo "Disabeling firewall"
+	$socketfilterfw --setglobalstate off
+	#$socketfilterfw --setstealthmode off
+	#$socketfilterfw --setblockall off
+}
+
 case $1 in
 	public)	public; fwstat; exit
 		;;
 	private)	private; fwstat; exit
 		;;
+	off)		off; 
+		;;
 	""|stat)
 			fwstat; exit
 		;;
-	*)		echo "usage: $0 private | public | stat"; exit
+	*)		echo "usage: $0 private | public | off | stat"; exit
 		;;
 esac
 

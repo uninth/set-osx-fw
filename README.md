@@ -27,11 +27,13 @@ Run with
 ~/bin/set-fw fwstat
 `````
 
+You may turn off the firewall with ` ~/bin/set-fw off` exposing your OS to all kind of threats.
+
 ## Why do it?
 
 Apple consider [pf](https://en.wikipedia.org/wiki/PF_(firewall)) part of the base operating system, so if you make any changes they may be replaced during a system update. If you like me are most comfortable with the command line, then it makes sense to change settings depending on your current connection with a script.
 
 ## Tested on
 
-The script has only been tested on High Sierra. It will fail if Apple make changes to socketfilterfw.
+The script has only been tested on High Sierra. It will fail if Apple make changes to `socketfilterfw`.
 
