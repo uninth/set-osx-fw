@@ -3,10 +3,21 @@
 # See man socketfilterfw
 
 socketfilterfw="sudo /usr/libexec/ApplicationFirewall/socketfilterfw"
+STATUS=$( $socketfilterfw --getglobalstate |sed 's/.*=//;s/)//; s/^[[:blank:]]*//;s/[[:blank:]]*$//')
 
 function fwstat()
 {
 	echo "FW status:"
+	case $STATUS in
+		0)	echo "Firewall disabled"
+			;;
+		1)	echo "Firewall enabled, ALF status does not apply"
+			echo "Apps [ALF]:     $( $socketfilterfw --listapps)"
+			;;
+		*)	echo "Firewall is [$STATUS] hmm "
+			;;
+	esac
+	echo "Status:         $( $socketfilterfw --getglobalstate)"
 	echo "getblockall:    $( $socketfilterfw --getblockall )"
 	echo "getstealthmode: $( $socketfilterfw --getstealthmode )"
 	echo "enable logging: $( $socketfilterfw --setloggingmode on )"
