@@ -9,9 +9,9 @@ function fwstat()
 {
 	echo "FW status:"
 	case $STATUS in
-		0)	echo "Firewall disabled"
+	0)	echo "Firewall disabled"
 			;;
-		1)	echo "Firewall enabled, ALF status does not apply"
+		1|2)	echo "Firewall enabled"
 			echo "Apps [ALF]:     $( $socketfilterfw --listapps)"
 			;;
 		*)	echo "Firewall is [$STATUS] hmm "
