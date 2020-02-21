@@ -35,5 +35,5 @@ Apple consider [pf](https://en.wikipedia.org/wiki/PF_(firewall)) part of the bas
 
 ## Tested on
 
-The script has only been tested on High Sierra. It will fail if Apple make changes to `socketfilterfw`.
+The script has only been tested on High Sierra and catalina. It will fail if Apple make changes to `socketfilterfw`.
 
